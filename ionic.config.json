@@ -1,0 +1,7 @@
+{
+  "name": "review-app-web",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
