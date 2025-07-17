@@ -1,6 +1,8 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { QueryProvider } from './contexts/QueryContext';
+import { BusinessesProvider } from './contexts/BusinessesContext';
 
 import Home from './pages/Home';
 
@@ -37,20 +39,31 @@ import './theme/variables.css';
 import { ROUTES } from './utils/routes';
 import Invalid from './components/common/invalid/Invalid';
 import Share from './pages/share/Share';
+import Review  from './pages/review/Review';
+import { ReviewsProvider } from './contexts/ReviewsContext';
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path={ROUTES.ROOT}>
-          <Home />
-        </Route>
-        <Route exact path={ROUTES.SHARE}>
-          <Share />
-        </Route>
-      </IonRouterOutlet>
+      <QueryProvider>
+        <ReviewsProvider>
+          <BusinessesProvider>
+            <IonRouterOutlet>
+              <Route exact path={ROUTES.ROOT}>
+                <Home />
+              </Route>
+              <Route exact path={ROUTES.SHARE}>
+                <Share />
+              </Route>
+              <Route exact path={ROUTES.REVIEW}>
+                <Review />
+              </Route>
+            </IonRouterOutlet>
+          </BusinessesProvider>
+        </ReviewsProvider>
+      </QueryProvider>
     </IonReactRouter>
   </IonApp>
 );

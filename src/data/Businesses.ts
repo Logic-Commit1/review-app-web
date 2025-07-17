@@ -3,7 +3,7 @@ import { supabase } from '../utils/supabase';
 export type Business = {
   id: string;
   name: string;
-  description?: string;
+  location: string;
   facebook_url?: string;
   google_maps_url?: string;
   created_at?: string;

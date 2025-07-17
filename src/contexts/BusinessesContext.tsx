@@ -7,7 +7,7 @@ interface BusinessesContextType {
   businessesLoading: boolean;
   businessesLoaded: boolean;
   refetchBusinesses: () => void;
-  business: Business | null | undefined;
+  selectedBusiness: Business | null | undefined;
   businessLoading: boolean;
   businessLoaded: boolean;
   fetchBusiness: (id: string) => void;
@@ -35,7 +35,7 @@ export const BusinessesProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   // Single business
   const {
-    data: business,
+    data: selectedBusiness,
     isLoading: businessLoading,
     isFetched: businessLoaded,
     refetch: refetchBusiness
@@ -73,7 +73,7 @@ export const BusinessesProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         businessesLoading,
         businessesLoaded,
         refetchBusinesses,
-        business,
+        selectedBusiness,
         businessLoading,
         businessLoaded,
         fetchBusiness,
