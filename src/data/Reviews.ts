@@ -1,4 +1,3 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../utils/supabase';
 
 export type Review = {
@@ -65,29 +64,4 @@ export const deleteReview = async (id: string): Promise<void> => {
     .delete()
     .eq('id', id);
   if (error) throw error;
-};
-
-// React Query hooks
-export const useReviews = (business_id?: string) => useQuery({ queryKey: business_id ? ['reviews', business_id] : ['reviews'], queryFn: () => getReviews(business_id) });
-export const useReview = (id: string) => useQuery({ queryKey: ['review', id], queryFn: () => getReviewById(id), enabled: !!id });
-export const useCreateReview = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: createReview,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['reviews'] }),
-  });
-};
-export const useUpdateReview = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: ({ id, updates }: { id: string; updates: Partial<Omit<Review, 'id' | 'created_at'>> }) => updateReview(id, updates),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['reviews'] }),
-  });
-};
-export const useDeleteReview = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: deleteReview,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['reviews'] }),
-  });
 }; 

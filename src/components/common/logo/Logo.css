@@ -1,0 +1,27 @@
+#logoContainer {
+  display: flex;
+  padding: 8px 0 24px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#logoContainer ion-icon {
+  font-size: 24pt;
+  position: absolute;
+  left: 0;
+  color: var(--ion-color-dark-tint);
+  cursor: pointer;
+}
+
+#logoContainer ion-icon:hover {
+  opacity: 0.8;
+}
+
+#logo {
+  width: 42%;
+  max-width: 142px;
+  border: none;
+  max-height: 34px;
+  cursor: pointer;
+}

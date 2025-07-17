@@ -1,0 +1,6 @@
+#padding {
+  position: relative;
+  margin-top: env(safe-area-inset-top);
+  max-width: 721px;
+  margin: auto;
+}

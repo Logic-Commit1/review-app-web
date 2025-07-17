@@ -1,4 +1,3 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../utils/supabase';
 
 export type Business = {
@@ -61,29 +60,4 @@ export const deleteBusiness = async (id: string): Promise<void> => {
     .delete()
     .eq('id', id);
   if (error) throw error;
-};
-
-// React Query hooks
-export const useBusinesses = () => useQuery({ queryKey: ['businesses'], queryFn: getBusinesses });
-export const useBusiness = (id: string) => useQuery({ queryKey: ['business', id], queryFn: () => getBusinessById(id), enabled: !!id });
-export const useCreateBusiness = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: createBusiness,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['businesses'] }),
-  });
-};
-export const useUpdateBusiness = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: ({ id, updates }: { id: string; updates: Partial<Omit<Business, 'id' | 'created_at'>> }) => updateBusiness(id, updates),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['businesses'] }),
-  });
-};
-export const useDeleteBusiness = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: deleteBusiness,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['businesses'] }),
-  });
 }; 

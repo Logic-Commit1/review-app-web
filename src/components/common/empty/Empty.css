@@ -1,0 +1,13 @@
+#empty {
+  text-align: center;
+  margin: 172px auto 0;
+  opacity: 0.24;
+}
+
+#empty ion-icon {
+  font-size: 42pt;
+}
+
+#empty p {
+  margin: 0;
+}

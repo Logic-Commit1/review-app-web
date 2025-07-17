@@ -1,0 +1,20 @@
+#loading {
+  text-align: center;
+  margin: 172px auto 0;
+}
+
+#loading ion-spinner {
+  width: 56px;
+  height: 56px;
+}
+
+#loading h3 {
+  margin: 16px 0 8px;
+  opacity: 0.24;
+}
+
+#loading p {
+  margin: 0;
+  line-height: 150%;
+  opacity: 0.24;
+}

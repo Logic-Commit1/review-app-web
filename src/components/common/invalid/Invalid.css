@@ -1,0 +1,18 @@
+#invalid {
+  text-align: center;
+  margin: 172px auto 0;
+  opacity: 0.24;
+}
+
+#invalid ion-icon {
+  font-size: 42pt;
+}
+
+#invalid h3 {
+  margin: 16px 0 8px;
+}
+
+#invalid p {
+  margin: 0;
+  line-height: 150%;
+}
