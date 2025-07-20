@@ -3,9 +3,7 @@ import React from 'react';
 
 import './Loading.css';
 
-interface LoadingProps {}
-
-const Loading: React.FC<LoadingProps> = () => {
+const Loading: React.FC = () => {
   return (
     <div id="loading">
       <IonSpinner name="crescent" color="primary"></IonSpinner>
