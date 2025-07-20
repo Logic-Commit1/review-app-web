@@ -48,14 +48,13 @@ const Review: React.FC = () => {
 
   const copy = useMemo(() => ({
     loadingMessage: 'Loading...',
-    // subHeader: 'LEAVE A REVIEW',
     header: (
-        <IonText color="primary">
-          {selectedBusiness?.name || ''}
-        </IonText>
+      <IonText>
+        {selectedBusiness?.name || ''}
+      </IonText>
     ),
     message: selectedBusiness?.location ? `Location: ${selectedBusiness.location}` : '',
-    submitButton: 'Submit Review',
+    submitButton: 'Submit',
     successMessage: 'Thank you for your review!'
   }), [selectedBusiness]);
 
@@ -74,26 +73,24 @@ const Review: React.FC = () => {
       setRating(5);
       setComment('');
     } catch (error) {
-      // Optionally handle error
+      console.error(error);
     }
   };
 
   return (
     <IonPage id="review">
-      <IonContent>
-        <div className="review-container">
-          {/* <Logo /> */}
+      <IonContent className="review-content">
+        <div className={`review-container ${loading ? 'loading' : ''}`}>
           {loading ? (
             <Loading />
           ) : selectedBusiness ? (
             <>
               <div className="business-details">
-                {/* <h4 id="subHeader">{copy.subHeader}</h4> */}
-                <h1 id="header">{copy.header}</h1>
-                <p id="message">{copy.message}</p>
+                <h1>{copy.header}</h1>
+                <p>{copy.message}</p>
               </div>
               <form className="review-form" onSubmit={handleSubmit}>
-                <h3>Leave a Review</h3>
+                {/* <h3>Leave a Review</h3> */}
                 <label>
                   Name
                   <IonInput
@@ -101,6 +98,7 @@ const Review: React.FC = () => {
                     onIonChange={e => setName(e.detail.value ?? '')}
                     required
                     placeholder="Your name"
+                    clearInput={true}
                   />
                 </label>
                 <label>
@@ -124,10 +122,19 @@ const Review: React.FC = () => {
                     value={comment}
                     onIonChange={e => setComment(e.detail.value ?? '')}
                     required
-                    placeholder="Share your details of experience at this place"
+                    placeholder="Share your experience at this place..."
+                    autoGrow={true}
+                    maxlength={500}
                   />
                 </label>
-                <IonButton type="submit" expand="block" fill="solid" size="default" strong>
+                <IonButton
+                  type="submit"
+                  expand="block"
+                  fill="solid"
+                  size="large"
+                  strong
+                  disabled={!name.trim() || rating === 0 || !comment.trim()}
+                >
                   {copy.submitButton}
                 </IonButton>
                 {submitted && <div className="success-message">{copy.successMessage}</div>}

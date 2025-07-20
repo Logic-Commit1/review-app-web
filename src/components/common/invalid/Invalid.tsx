@@ -5,9 +5,7 @@ import { backspaceOutline } from 'ionicons/icons';
 
 import './Invalid.css';
 
-interface InvalidProps {}
-
-const Invalid: React.FC<InvalidProps> = () => {
+const Invalid: React.FC = () => {
   return (
     <div id="invalid">
       <IonIcon icon={backspaceOutline} />

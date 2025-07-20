@@ -32,15 +32,15 @@ import '@ionic/react/css/display.css';
 
 /* import '@ionic/react/css/palettes/dark.always.css'; */
 /* import '@ionic/react/css/palettes/dark.class.css'; */
-import '@ionic/react/css/palettes/dark.system.css';
+// import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
-import './theme/variables.css';
+// import './theme/variables.css';
 import { ROUTES } from './utils/routes';
-import Invalid from './components/common/invalid/Invalid';
 import Share from './pages/share/Share';
-import Review  from './pages/review/Review';
+import Review from './pages/review/Review';
 import { ReviewsProvider } from './contexts/ReviewsContext';
+import Invalid from './components/common/invalid/Invalid';
 
 setupIonicReact();
 
@@ -59,6 +59,9 @@ const App: React.FC = () => (
               </Route>
               <Route exact path={ROUTES.REVIEW}>
                 <Review />
+              </Route>
+              <Route exact path={ROUTES.INVALID}>
+                <Invalid />
               </Route>
             </IonRouterOutlet>
           </BusinessesProvider>
