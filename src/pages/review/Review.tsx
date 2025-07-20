@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 // import Logo from '// omponents/common/logo/Logo';
 import Loading from '@/components/common/loading/Loading';
 import Invalid from '@/components/common/invalid/Invalid';
+import FacebookReviewModal from '@/components/common/facebookReviewModal/FacebookReviewModal';
 import { star, starOutline } from 'ionicons/icons';
 import './Review.css';
 
@@ -37,6 +38,8 @@ const Review: React.FC = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [showFacebookModal, setShowFacebookModal] = useState(false);
+  const [submittedRating, setSubmittedRating] = useState(0);
 
   useEffect(() => {
     if (businessId) {
@@ -69,8 +72,14 @@ const Review: React.FC = () => {
         comment
       });
       setSubmitted(true);
+      setSubmittedRating(rating);
+
+      // Show Facebook modal if rating > 3 and business has facebook_url
+      if (rating > 3 && selectedBusiness?.facebook_url) {
+        setShowFacebookModal(true);
+      }
       setName('');
-      setRating(5);
+      setRating(0);
       setComment('');
     } catch (error) {
       console.error(error);
@@ -139,6 +148,14 @@ const Review: React.FC = () => {
                 </IonButton>
                 {submitted && <div className="success-message">{copy.successMessage}</div>}
               </form>
+              {/* Facebook Review Modal */}
+              <FacebookReviewModal
+                isOpen={showFacebookModal}
+                onClose={() => setShowFacebookModal(false)}
+                businessName={selectedBusiness?.name || ''}
+                facebookUrl={selectedBusiness?.facebook_url || ''}
+                rating={submittedRating}
+              />
             </>
           ) : (
             <Invalid />
