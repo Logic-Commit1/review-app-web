@@ -37,7 +37,6 @@ const Review: React.FC = () => {
   const [name, setName] = useState('');
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [showFacebookModal, setShowFacebookModal] = useState(false);
   const [submittedRating, setSubmittedRating] = useState(0);
 
@@ -71,7 +70,6 @@ const Review: React.FC = () => {
         rating,
         comment
       });
-      setSubmitted(true);
       setSubmittedRating(rating);
 
       // Show Facebook modal if rating > 3 and business has facebook_url
@@ -116,7 +114,6 @@ const Review: React.FC = () => {
                 <IonInput
                   value={name}
                   onIonChange={e => setName(e.detail.value ?? '')}
-                  required
                   placeholder="Name (optional)"
                   clearInput={true}
                 />
@@ -140,7 +137,6 @@ const Review: React.FC = () => {
                 >
                   {copy.submitButton}
                 </IonButton>
-                {submitted && <div className="success-message">{copy.successMessage}</div>}
               </form>
               {/* Facebook Review Modal */}
               <FacebookReviewModal
