@@ -1,21 +1,17 @@
-import { IonIcon, IonImg, NavContext } from '@ionic/react';
+import { IonImg, NavContext } from '@ionic/react';
 import React, { useContext } from 'react';
 
-import logo from '@/assets/images/logo/logo-with-icon.png';
+import logo from '@/assets/images/logo/ReviewAppLogo.png';
 import { ROUTES } from '@/utils/routes';
-import { arrowBackOutline } from 'ionicons/icons';
 
 import './Logo.css';
 
 interface LogoProps {
-  showBackButton?: boolean;
-  onBack?: () => void;
   navigateToRootOnClick?: boolean;
 }
 
 const Logo: React.FC<LogoProps> = ({
-  showBackButton = false,
-  onBack = () => {},
+
   navigateToRootOnClick = false
 }) => {
   const { navigate } = useContext(NavContext);
@@ -36,7 +32,6 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div id="logoContainer">
-      {showBackButton && <IonIcon icon={arrowBackOutline} onClick={onBack} />}
       <IonImg
         src={logo}
         id="logo"

@@ -56,7 +56,7 @@ const Review: React.FC = () => {
         {selectedBusiness?.name || ''}
       </IonText>
     ),
-    message: selectedBusiness?.location ? `Location: ${selectedBusiness.location}` : '',
+    location: selectedBusiness?.location ? `${selectedBusiness.location}` : '',
     submitButton: 'Submit',
     successMessage: 'Thank you for your review!'
   }), [selectedBusiness]);
@@ -95,54 +95,48 @@ const Review: React.FC = () => {
           ) : selectedBusiness ? (
             <>
               <div className="business-details">
-                <h1>{copy.header}</h1>
-                <p>{copy.message}</p>
+                <p className="business-name">{copy.header}</p>
+                <p className="business-location">{copy.location}</p>
               </div>
               <form className="review-form" onSubmit={handleSubmit}>
-                {/* <h3>Leave a Review</h3> */}
-                <label>
-                  Name
-                  <IonInput
-                    value={name}
-                    onIonChange={e => setName(e.detail.value ?? '')}
-                    required
-                    placeholder="Your name"
-                    clearInput={true}
-                  />
-                </label>
-                <label>
-                  Rating
-                  <div className="stars-row">
-                    {[1, 2, 3, 4, 5].map(num => (
-                      <IonIcon
-                        key={num}
-                        icon={num <= rating ? star : starOutline}
-                        color={num <= rating ? 'warning' : 'medium'}
-                        className="star-icon"
-                        onClick={() => setRating(num)}
-                        data-testid={`star-${num}`}
-                      />
-                    ))}
-                  </div>
-                </label>
-                <label>
-                  Comment
-                  <IonTextarea
-                    value={comment}
-                    onIonChange={e => setComment(e.detail.value ?? '')}
-                    required
-                    placeholder="Share your experience at this place..."
-                    autoGrow={true}
-                    maxlength={500}
-                  />
-                </label>
+
+                <div className="stars-row">
+                  {[1, 2, 3, 4, 5].map(num => (
+                    <IonIcon
+                      key={num}
+                      icon={num <= rating ? star : starOutline}
+                      color={num <= rating ? 'warning' : 'medium'}
+                      className="star-icon"
+                      onClick={() => setRating(num)}
+                      data-testid={`star-${num}`}
+                    />
+                  ))}
+                </div>
+
+                <IonInput
+                  value={name}
+                  onIonChange={e => setName(e.detail.value ?? '')}
+                  required
+                  placeholder="Name (optional)"
+                  clearInput={true}
+                />
+
+                <IonTextarea
+                  value={comment}
+                  onIonChange={e => setComment(e.detail.value ?? '')}
+                  required
+                  placeholder="Share your experience at this place..."
+                  autoGrow={true}
+                  maxlength={500}
+                />
                 <IonButton
+                  className='submit-button'
                   type="submit"
                   expand="block"
                   fill="solid"
                   size="large"
                   strong
-                  disabled={!name.trim() || rating === 0 || !comment.trim()}
+                  disabled={rating === 0}
                 >
                   {copy.submitButton}
                 </IonButton>

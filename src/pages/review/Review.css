@@ -1,50 +1,38 @@
 /* Review Page Styles - Consistent with Home page design */
 
 .review-content {
-  --background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   padding: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .review-container {
   max-width: 500px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 2rem;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.1);
-  border: 1px solid rgba(102, 126, 234, 0.1);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
 }
 
-.review-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
 .business-details {
   text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.business-details h1 {
-  margin: 0 0 0.5rem 0;
+.business-details .business-name {
+  margin: 0;
   font-size: 2rem;
-  font-weight: 700;
-  color: #1a202c;
+  font-weight: 500;
   letter-spacing: -0.5px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.business-details p {
-  color: #64748b;
-  font-size: 1rem;
+.business-details .business-location {
+  color: var(--ion-color-medium);
+  font-size: 0.9rem;
   margin: 0;
   font-weight: 500;
 }
@@ -53,14 +41,16 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .review-form h3 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1a202c;
+  color: var(--ion-color-primary);
   text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .review-form label {
@@ -68,47 +58,54 @@
   flex-direction: column;
   font-size: 1rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--ion-color-dark);
   gap: 0.5rem;
 }
 
 .review-form ion-input,
 .review-form ion-textarea {
-  --background: #ffffff;
-  --border-color: rgba(102, 126, 234, 0.2);
+
+  --background: var(--ion-color-primary-contrast);
+  --border-color: #c5c5c5;
+  --selected-border-color: #169dc6;
   --border-radius: 12px;
   --border-width: 2px;
   --padding-start: 1rem;
   --padding-end: 1rem;
   --padding-top: 0.75rem;
   --padding-bottom: 0.75rem;
-  --color: #1a202c;
-  --placeholder-color: #9ca3af;
+  --color: var(--ion-color-dark);
+  --placeholder-color: var(--ion-color-medium);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: all 0.3s ease;
 }
 
 .review-form ion-input:focus-within,
 .review-form ion-textarea:focus-within {
-  --border-color: #667eea;
-  --background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  --border-color: var(--selected-border-color);
+  /* box-shadow: 0 0 0 3px rgba(var(--ion-color-primary-rgb), 0.1); */
+}
+
+.review-form ion-input {
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
 }
 
 .review-form ion-textarea {
-  --min-height: 120px;
-  --resize: vertical;
+  /* --min-height: 120px;
+  --resize: vertical; */
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
 }
 
 .stars-row {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
+  gap: 2rem;
   padding: 1rem;
-  background: rgba(102, 126, 234, 0.05);
+  background: var(--ion-color-accent-bw);
   border-radius: 12px;
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid var(--border-color);
 }
 
 .star-icon {
@@ -121,47 +118,44 @@
 
 .star-icon:hover {
   transform: scale(1.1);
-  background: rgba(102, 126, 234, 0.1);
+  background: var(--ion-color-accent);
 }
 
 .star-icon[color="warning"] {
-  color: #fbbf24 !important;
+  color: var(--ion-color-warning) !important;
   filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
 }
 
 .star-icon[color="medium"] {
-  color: #d1d5db !important;
+  color: var(--ion-color-medium) !important;
 }
 
 .review-form ion-button {
-  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --color: #ffffff;
-  --border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  --background: #169dc6;
+  --border-radius: 12px;
   --padding-start: 2rem;
   --padding-end: 2rem;
-  --padding-top: 1rem;
   --padding-bottom: 1rem;
   font-weight: 600;
   font-size: 1rem;
   box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
   transition: all 0.3s ease;
-  margin-top: 1rem;
-}
-
-.review-form ion-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
 }
 
 .success-message {
   margin-top: 1rem;
   padding: 1rem;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ion-color-success) 0%, var(--ion-color-success-tint) 100%);
+  color: var(--ion-color-success-contrast);
   font-weight: 600;
   text-align: center;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+  box-shadow: var(--light-shadow);
   animation: fadeInUp 0.6s ease-out;
 }
 
@@ -178,10 +172,6 @@
   }
 }
 
-.review-container {
-  animation: fadeInUp 0.8s ease-out;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .review-container {
@@ -190,7 +180,7 @@
     border-radius: 16px;
   }
 
-  .business-details h1 {
+  .business-details .business-name {
     font-size: 1.75rem;
   }
 
@@ -209,21 +199,12 @@
 
 @media (max-width: 480px) {
   .review-container {
-    margin: 0.5rem;
-    padding: 1rem;
+    padding: 1rem 0.5rem;
   }
 
-  .business-details h1 {
+  /* .star-icon {
     font-size: 1.5rem;
-  }
-
-  .stars-row {
-    gap: 0.25rem;
-  }
-
-  .star-icon {
-    font-size: 1.5rem;
-  }
+  } */
 }
 
 /* Loading and Error States */
@@ -233,10 +214,10 @@
 }
 
 /* Focus States for Accessibility */
-.review-form ion-input:focus-within,
+/* .review-form ion-input:focus-within,
 .review-form ion-textarea:focus-within {
   outline: none;
-}
+} */
 
 /* Custom Scrollbar for Textarea */
 .review-form ion-textarea::part(scroll) {

@@ -1,15 +1,17 @@
 import { IonContent, IonHeader, IonPage, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonGrid, IonRow, IonCol } from '@ionic/react';
 import { star, people, trendingUp, shieldCheckmark, chatbubbleEllipses, analytics } from 'ionicons/icons';
 import './Home.css';
+import Logo from '@/components/common/logo/Logo';
+
 
 const Home: React.FC = () => {
   return (
     <IonPage>
       <IonHeader className="landing-header">
         <div className="header-content">
-          <div className="logo">
-            <IonIcon icon={star} className="logo-icon" />
-            <span className="logo-text">ReviewFlow</span>
+          <div className="header-logo">
+            <Logo />
+            <p className="header-logo-text">Review Pro</p>
           </div>
           <div className="header-actions">
             <IonButton fill="clear" className="header-btn">Login</IonButton>
